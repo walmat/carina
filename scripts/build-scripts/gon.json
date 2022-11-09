@@ -1,0 +1,16 @@
+{
+ "source": [
+  "dist/Carina.app"
+ ],
+ "bundle_id": "com.nebulabots.carina",
+ "sign": {
+  "application_identity": "Developer ID Application: Matt Wall"
+ },
+ "apple_id": {
+  "password": "@env:AC_PASSWORD"
+ },
+ "dmg": {
+  "output_path": "dist/Carina-6571174d6.dmg",
+  "volume_name": "Carina"
+ }
+}

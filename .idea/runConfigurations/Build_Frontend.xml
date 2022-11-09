@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build Frontend" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/web/package.json" />
+    <command value="build" />
+    <node-interpreter value="project" />
+    <package-manager value="yarn" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

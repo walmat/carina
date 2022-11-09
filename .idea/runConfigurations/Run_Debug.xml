@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Debug" type="CompoundRunConfigurationType">
+    <toRun name="Run Bot Watcher" type="GoApplicationRunConfiguration" />
+    <toRun name="Run API (Debug)" type="GoApplicationRunConfiguration" />
+    <toRun name="Serve Frontend" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>

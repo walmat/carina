@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run API Watcher" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="nebula" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="-config=config/watcher/api.toml" />
+    <envs>
+      <env name="NEBULA_API_DEBUG" value="true" />
+    </envs>
+    <kind value="PACKAGE" />
+    <package value="nebula/cmd/watcher" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,107 @@
+/*********************************************************/
+/* Machine: LION32 (White)
+/*
+/* File generated automatically from Oreans VM Generator
+/* Please, do not edit
+/*
+/* (c) 2021 Oreans Technologies
+/*********************************************************/
+
+[Main Machine Info]
+
+Name = (White)
+MachineId = 0x3E480801
+MachineSignature = 0xD4795E21
+ProductSupport = WinLicense, Virtualizer, Themida
+FileVersionEncoded = 0x76281934
+HardwareEncryption = Not available
+
+
+[Main Machine Architecture]
+
+Name = LION32
+Bits = 32
+MaxCPUs = 8
+Emulates = IA32
+
+
+[Main Machine Stats]
+
+MemoryUsage = 1050 KB
+Speed = 70
+Complexity = 48
+ScoreMultiplier = 1
+
+
+[Main Machine Processor]
+
+InternalConversor = 0x2A289F1B
+InternalConversorLevel = 3
+UsingMicroRegs = Yes
+RelocateRegs = Yes
+RelocateStages = Yes
+OpcodePermutation = Yes
+RelocateHandlers = Yes
+JoinUndefinedOpcodes = No
+AllowAvidFields = Yes
+ExpandedInstructionSet = Yes
+MergeStages = Yes
+EnableRevirtualization = Yes
+EnableJoinHandlers = Yes
+JoinHandlersInterval = [3..7]
+EnableStageGarbage = Yes
+EnableMicroInstructions = Yes
+SmartInstructionsRelocation = Yes
+EnableHandlerTimes = Yes
+EnableBreakPoints = No
+EnableDebugMode = No
+EnableInterruptTrace = No
+EnableFakeJumps = No
+EnableFakeConditionalJumps = No
+PermutateHandlers = No
+MutateHandlers = No
+
+
+[Specific Opcodes Customization]
+
+Group1Mnemonics = COMMON_BINARY_OP, COMMON_UNARY_OP, POP, PUSH, XCHG
+Group1Garbage = [5]
+Group1Avid = [5..10]
+Group1Times = [3..5]
+
+Group2Mnemonics = LODSB, LODSW, LODSD, SCASB, SCASW, SCASD, CMPSB, CMPSW, CMPSD, STOSB, STOSW, STOSD, MOVSB, MOVSW, MOVSD, PUSHFD, POPFD
+Group2Garbage = [3]
+Group2Avid = [2..5]
+Group2Times = [2..6]
+
+Group3Mnemonics = JCC_INSIDE, JUMP_OUTSIDE, JUMP_INSIDE, CALL, UNDEF, RET, JCC_OUTSIDE
+Group3Garbage = [5]
+Group3Avid = [0..0]
+Group3Times = [2..5]
+
+Group4Mnemonics = ENCRYPTED_OP_0x000A
+Group4Garbage = [5]
+Group4Avid = [5..10]
+Group4Times = [4..6]
+
+Group5Mnemonics = ENCRYPTED_OP_0x0007, ENCRYPTED_OP_0x0009, ENCRYPTED_OP_0x0008, ENCRYPTED_OP_0x000B, ENCRYPTED_OP_0x000C, ENCRYPTED_OP_0x000D
+Group5Garbage = [3]
+Group5Avid = [3..6]
+Group5Times = [2..4]
+
+Group6Mnemonics = ENCRYPTED_OP_0x0006
+Group6Garbage = [0]
+Group6Avid = [0..0]
+Group6Times = [3..6]
+
+Group7Mnemonics = CLC, CLD, CLI, CMC, STC, STD, STI
+Group7Garbage = [3]
+Group7Avid = [2..4]
+Group7Times = [2..4]
+
+Group8Mnemonics = ENCRYPTED_OP_0x000F
+Group8Garbage = [3]
+Group8Avid = [2..4]
+Group8Times = [1..1]
+
+

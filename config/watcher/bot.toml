@@ -1,0 +1,24 @@
+# build information
+package = 'nebula/cmd/bot'
+build_args = [
+    '-ldflags',
+    '-X nebula/cmd/bot/inject.IsDev=yes -X nebula/cmd/bot/inject.CommitHash=dev -X nebula/pkg/api/apiclient.ApiUrl=http://127.0.0.1:8080'
+]
+
+# filter for files to be watched
+filter = "^.*\\.(go)$"
+
+# max events that can be sent in one tick of the watcher
+max_events = 1
+
+# how long between events to wait before considering it a change (in ms)
+debounce_time = 250
+
+# print watched files when the watcher starts, mainly for debugging
+print_watched = false
+
+# the directories to be watched
+directories = [
+  'cmd',
+  'pkg'
+]

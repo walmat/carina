@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Watcher",
+            "type": "go",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/cmd/watcher",
+            "args": [
+                "-config=${workspaceFolder}/config/watcher/bot.toml"
+            ],
+            "postDebugTask": "postdebugKill"
+        },
+        {
+            "name": "API",
+            "type": "go",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NEBULA_API_DEBUG": true
+            },
+            "program": "${workspaceFolder}/cmd/api"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch Nebula",
+            "configurations": [
+                "API",
+                "Watcher"
+            ],
+            "preLaunchTask": "Serve Frontend",
+            "stopAll": true
+        }
+    ]
+}

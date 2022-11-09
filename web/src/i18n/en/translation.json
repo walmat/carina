@@ -1,0 +1,16 @@
+{
+  "Pages": {
+    "Dashboard": "Dashboard",
+    "Calendar": "Calendar",
+    "Tasks": "Tasks",
+    "Workflows": "Workflows",
+    "Profiles": "Profiles",
+    "Proxies": "Proxies",
+    "General": "General",
+    "Defaults": "Defaults",
+    "Accounts": "Accounts",
+    "Shipping Rates": "Shipping Rates",
+    "Webhooks": "Webhooks",
+    "Integrations": "Integrations"
+  }
+}

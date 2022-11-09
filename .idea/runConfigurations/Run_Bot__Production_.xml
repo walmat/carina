@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Bot (Production)" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="nebula" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="PACKAGE" />
+    <package value="nebula/scripts/build-scripts/bot" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build Frontend" run_configuration_type="js.build_tools.npm" />
+      <option name="GoBeforeRunTask" command="generate ./cmd/..." />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,113 @@
+/*********************************************************/
+/* Machine: DOLPHIN64 (Red)
+/*
+/* File generated automatically from Oreans VM Generator
+/* Please, do not edit
+/*
+/* (c) 2016 Oreans Technologies
+/*********************************************************/
+
+[Main Machine Info]
+
+Name = (Red)
+MachineId = 0x2C27C005
+MachineSignature = 0x766E4365
+ProductSupport = WinLicense, Virtualizer, Themida
+FileVersionEncoded = 0x76281934
+HardwareEncryption = Not available
+
+
+[Main Machine Architecture]
+
+Name = DOLPHIN64
+Bits = 64
+MaxCPUs = 8
+Emulates = IA64
+
+
+[Main Machine Stats]
+
+MemoryUsage = 2060 KB
+Speed = 74
+Complexity = 38
+ScoreMultiplier = 1
+
+
+[Main Machine Processor]
+
+InternalConversor = 0x31A3BC19
+InternalConversorLevel = 1
+InternalConversorInProlog = Yes
+HideInternalRegs = Yes
+UsingMicroRegs = Yes
+RelocateRegs = Yes
+RelocateStages = Yes
+OpcodePermutation = Yes
+RelocateHandlers = Yes
+JoinUndefinedOpcodes = No
+AllowAvidFields = Yes
+ExpandedInstructionSet = Yes
+MergeStages = Yes
+EnableRevirtualization = Yes
+EnableJoinHandlers = Yes
+EnableStageGarbage = Yes
+EnableMicroInstructions = Yes
+SmartInstructionsRelocation = Yes
+EnableHandlerTimes = Yes
+EnableBreakPoints = No
+EnableDebugMode = No
+EnableInterruptTrace = No
+EnableFakeJumps = No
+EnableFakeConditionalJumps = No
+PermutateHandlers = No
+MutateHandlers = No
+
+
+[Specific Opcodes Customization]
+
+Group1Mnemonics = ADD, MOV, SUB, AND, XOR, OR, POP, PUSH
+Group1Garbage = [5]
+Group1Avid = [10..20]
+Group1Times = [5..10]
+
+Group2Mnemonics = ENCRYPTED_OP_0x0000, ENCRYPTED_OP_0x0001, ENCRYPTED_OP_0x0002, ENCRYPTED_OP_0x0003, ENCRYPTED_OP_0x0004, ENCRYPTED_OP_0x0005
+Group2Garbage = [5]
+Group2Avid = [10..20]
+Group2Times = [5..10]
+
+Group3Mnemonics = ROL, ROR, RCL, SHL, RCR, SHR, MOVZX, MOVSX
+Group3Garbage = [2]
+Group3Avid = [1..2]
+Group3Times = [2..5]
+
+Group4Mnemonics = CMP, TEST, DEC, INC, NOT, NEG
+Group4Garbage = [2]
+Group4Avid = [1..3]
+Group4Times = [2..5]
+
+Group5Mnemonics = IMUL, LODSB, LODSW, LODSD, SCASB, SCASW, SCASD, CMPSB, CMPSW, CMPSD, STOSB, STOSW, STOSD, MOVSB, MOVSW, MOVSD, PUSHFD, POPFD, SCASQ, CMPSQ, MOVSQ
+Group5Garbage = [2]
+Group5Avid = [1..3]
+Group5Times = [2..5]
+
+Group6Mnemonics = JCC_INSIDE, JUMP_OUTSIDE, JUMP_INSIDE, CALL, UNDEF, RET, JCC_OUTSIDE
+Group6Garbage = [3]
+Group6Avid = [0..0]
+Group6Times = [3..7]
+
+Group7Mnemonics = ENCRYPTED_OP_0x0006, ENCRYPTED_OP_0x0008
+Group7Garbage = [3]
+Group7Avid = [0..0]
+Group7Times = [3..7]
+
+Group8Mnemonics = CLC, CLD, CLI, CMC, STC, STD, STI
+Group8Garbage = [3]
+Group8Avid = [0..0]
+Group8Times = [3..7]
+
+Group9Mnemonics = ENCRYPTED_OP_0x0007, ENCRYPTED_OP_0x0009, ENCRYPTED_OP_0x000B, ENCRYPTED_OP_0x000C, ENCRYPTED_OP_0x000D
+Group9Garbage = [4]
+Group9Avid = [3..7]
+Group9Times = [2..4]
+
+

@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+    },
+    "tasks": [
+        {
+            "label": "Serve Frontend",
+            "type": "npm",
+            "options": {
+                "cwd": "web"
+            },
+            "script": "start",
+            "group": "none",
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Compiling...",
+                    "endsPattern": "Compiled .*"
+                }
+            },
+            "isBackground": true
+        },
+        {
+            "label": "postdebugKill",
+            "type": "process",
+            "command":[
+               "${command:workbench.action.tasks.terminate}",
+               "${command:workbench.action.acceptSelectedQuickOpenItem}",
+            ],
+         },
+    ]
+}

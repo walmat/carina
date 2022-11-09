@@ -1,0 +1,16 @@
+runtime: go115
+
+instance_class: F2
+
+main: cmd/api
+
+env_variables:
+  REDIS_ADDR: '10.170.137.220:6379'
+  DB_SECRET: 'projects/nebulabots/secrets/api-db/versions/latest'
+  SENDGRID_SECRET: 'projects/nebulabots/secrets/sendgrid-key/versions/latest'
+  INTERCOM_SECRET: 'projects/nebulabots/secrets/intercom-secret/versions/latest'
+  TLDASH_USER: 'projects/nebulabots/secrets/tldash-user/versions/latest'
+  TLDASH_PASS: 'projects/nebulabots/secrets/tldash-pass/versions/latest'
+
+vpc_access_connector:
+  name: 'projects/nebulabots/locations/us-central1/connectors/api-connector'

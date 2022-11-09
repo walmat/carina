@@ -1,0 +1,145 @@
+type Checkout {
+  amount: Float!
+  date: String!
+  id: ID!
+  metadata: CheckoutMetadata!
+  product: Product!
+  proxy: String!
+  status: String!
+  store: Store!
+  user: String!
+}
+
+type CheckoutConnection {
+  edges: [CheckoutEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CheckoutEdge {
+  cursor: String
+  node: Checkout
+}
+
+type CheckoutMetadata {
+  cardType: String!
+  email: String!
+  orderNumber: String!
+  profileName: String!
+}
+
+input DateFilter {
+  begin: String!
+  end: String!
+}
+
+type Mutation {
+  """Add a Shipment Tracker"""
+  ShipmentTrackerAdd(input: ShipmentTrackerAddInput!): ShipmentTrackerAddPayload
+
+  """Delete a Shipment Tracker"""
+  ShipmentTrackerDelete(input: ShipmentTrackerDeleteInput!): ShipmentTrackerDeletePayload
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+type Product {
+  image: String!
+  name: String!
+  price: String!
+  size: String!
+  url: String!
+}
+
+type Query {
+  checkouts(first: Int, last: Int, before: String, after: String): CheckoutConnection!
+  releases(before: String, after: String, first: Int, last: Int, filters: ReleaseFilter): ReleaseConnection!
+  shipmentTrackers(last: Int, before: String, after: String, first: Int): ShipmentTrackerConnection!
+}
+
+type Release {
+  date: String!
+  id: ID!
+  image: String!
+  name: String!
+  stores(before: String, after: String, first: Int, last: Int): StoreConnection!
+}
+
+type ReleaseConnection {
+  edges: [ReleaseEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ReleaseEdge {
+  cursor: String
+  node: Release
+}
+
+input ReleaseFilter {
+  date: DateFilter
+}
+
+type ShipmentTracker {
+  id: ID!
+  name: String!
+  trackingID: String!
+}
+
+input ShipmentTrackerAddInput {
+  trackingID: String!
+  name: String!
+}
+
+type ShipmentTrackerAddPayload {
+  error: String
+  shipmentTrackerEdge: ShipmentTrackerEdge
+}
+
+type ShipmentTrackerConnection {
+  edges: [ShipmentTrackerEdge!]!
+  pageInfo: PageInfo!
+}
+
+input ShipmentTrackerDeleteInput {
+  id: ID!
+}
+
+type ShipmentTrackerDeletePayload {
+  deletedShipmentTrackerId: ID
+  error: String
+}
+
+type ShipmentTrackerEdge {
+  cursor: String
+  node: ShipmentTracker
+}
+
+type Store {
+  date: String!
+  mode: String
+  name: String!
+  url: String
+}
+
+type StoreConnection {
+  edges: [StoreEdge!]!
+  pageInfo: PageInfo!
+}
+
+type StoreEdge {
+  cursor: String
+  node: Store
+}
+

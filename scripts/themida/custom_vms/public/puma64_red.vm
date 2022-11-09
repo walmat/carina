@@ -1,0 +1,143 @@
+/*********************************************************/
+/* Machine: PUMA64 (Red)
+/*
+/* File generated automatically from Oreans VM Generator
+/* Please, do not edit
+/*
+/* (c) 2016 Oreans Technologies
+/*********************************************************/
+
+[Main Machine Info]
+
+Name = (Red)
+MachineId = 0xD59BA105
+MachineSignature = 0x906A8E73
+ProductSupport = WinLicense, Virtualizer, Themida
+FileVersionEncoded = 0x76281934
+HardwareEncryption = 97Jd7N1826GTuwemaps82ysklftK726Hg4g7a81ms623H529Ks728sntJKKIIslH6Ksy1nal4l25amdtB
+
+
+[Main Machine Architecture]
+
+Name = PUMA64
+Bits = 64
+MaxCPUs = 1
+Emulates = IA64
+RevirtualizationLevel = 1
+
+
+[Main Machine Stats]
+
+MemoryUsage = 2160 KB
+Speed = 8
+Complexity = 87
+ScoreMultiplier = 1
+
+
+[Host Machine]
+
+MachineId = 0x84581905
+NumProcessors = 1
+
+
+[Guest Machine 1]
+
+MachineId = 0x28E9D505
+
+
+[Host Machine Processor]
+
+RelocateRegs = Yes
+RelocateStages = Yes
+OpcodePermutation = Yes
+RelocateHandlers = Yes
+JoinUndefinedOpcodes = No
+AllowAvidFields = Yes
+ExpandedInstructionSet = Yes
+MergeStages = Yes
+EnableRevirtualization = Yes
+EnableJoinHandlers = Yes
+EnableStageGarbage = Yes
+EnableMicroInstructions = Yes
+SmartInstructionsRelocation = Yes
+EnableHandlerTimes = Yes
+EnableBreakPoints = No
+EnableDebugMode = No
+EnableInterruptTrace = No
+EnableFakeJumps = No
+EnableFakeConditionalJumps = No
+PermutateHandlers = No
+MutateHandlers = No
+
+
+[Guest1 Machine Processor]
+
+RelocateRegs = Yes
+RelocateStages = Yes
+OpcodePermutation = Yes
+RelocateHandlers = Yes
+JoinUndefinedOpcodes = No
+AllowAvidFields = Yes
+ExpandedInstructionSet = Yes
+MergeStages = Yes
+EnableRevirtualization = Yes
+EnableJoinHandlers = Yes
+EnableStageGarbage = No
+EnableMicroInstructions = No
+SmartInstructionsRelocation = Yes
+EnableHandlerTimes = No
+EnableBreakPoints = No
+EnableDebugMode = No
+EnableInterruptTrace = No
+EnableFakeJumps = No
+EnableFakeConditionalJumps = No
+PermutateHandlers = No
+MutateHandlers = No
+
+
+[Specific Host Opcodes Customization]
+
+Group1Mnemonics = COMMON_BINARY_OP, COMMON_UNARY_OP, POP, PUSH
+Group1Garbage = [6]
+Group1Avid = [8..20]
+Group1Times = [6..14]
+
+Group2Mnemonics = LODSB, LODSW, LODSD, SCASB, SCASW, SCASD, CMPSB, CMPSW, CMPSD, STOSB, STOSW, STOSD, MOVSB, MOVSW, MOVSD, PUSHFD, POPFD
+Group2Garbage = [5]
+Group2Avid = [2..10]
+Group2Times = [2..6]
+
+Group3Mnemonics = JCC_INSIDE, JUMP_OUTSIDE, JUMP_INSIDE, CALL, UNDEF, RET, JCC_OUTSIDE
+Group3Garbage = [7]
+Group3Avid = [0..0]
+Group3Times = [7..12]
+
+
+[Specific Guest1 Opcodes Customization]
+
+Group1Mnemonics = ADD, MOV, SUB, AND, XOR, OR, POP, PUSH
+Group1Garbage = [3]
+Group1Avid = [1..3]
+Group1Times = [1..3]
+
+Group2Mnemonics = ROL, ROR, RCL, SHL, RCR, SHR, MOVZX, MOVSX
+Group2Garbage = [2]
+Group2Avid = [1..2]
+Group2Times = [1..2]
+
+Group3Mnemonics = CMP, TEST, DEC, INC, NOT, NEG
+Group3Garbage = [2]
+Group3Avid = [1..3]
+Group3Times = [1..2]
+
+Group4Mnemonics = IMUL, LODSB, LODSW, LODSD, SCASB, SCASW, SCASD, CMPSB, CMPSW, CMPSD, STOSB, STOSW, STOSD, MOVSB, MOVSW, MOVSD, PUSHFD, POPFD
+Group4Garbage = [2]
+Group4Avid = [1..3]
+Group4Times = [1..2]
+
+Group5Mnemonics = JCC_INSIDE, JUMP_OUTSIDE, JUMP_INSIDE, CALL, UNDEF, RET, JCC_OUTSIDE
+Group5Garbage = [3]
+Group5Avid = [0..0]
+Group5Times = [1..3]
+
+

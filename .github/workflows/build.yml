@@ -1,0 +1,121 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+name: Build
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Check Node Cache"
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - uses: borales/actions-yarn@v2.3.0
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        with:
+          cmd: --cwd web install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: --cwd web build # will run `yarn build` command
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend
+          path: cmd/bot/app/web/
+          retention-days: 1
+
+  build-and-deploy:
+    needs: build-frontend
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      BUCKET_NAME: carina-autoupdater-1
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          # In order:
+          # * Module download cache
+          # * Build cache (Linux)
+          # * Build cache (Mac)
+          # * Build cache (Windows)
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/Library/Caches/go-build
+            %LocalAppData%\go-build
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - uses: actions/download-artifact@v2
+        with:
+          name: frontend
+          path: cmd/bot/app/web/
+      - name: Build
+        run: go run ./scripts/build-scripts/main.go
+      - name: Import Code-Signing Certificates (MacOS)
+        if: matrix.os == 'macos-latest'
+        uses: Apple-Actions/import-codesign-certs@v1
+        with:
+          # The certificates in a PKCS12 file encoded as a base64 string
+          p12-file-base64: ${{ secrets.AC_P12_BASE64 }}
+          # The password used to import the PKCS12 file.
+          p12-password: ${{ secrets.AC_P12_BASE64_PASSWORD }}
+      - name: Install gon via HomeBrew (MacOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew tap mitchellh/gon
+          brew install mitchellh/gon/gon
+      - name: Sign Binaries w/ Gon (MacOS)
+        if: matrix.os == 'macos-latest'
+        env:
+          AC_USERNAME: ${{ secrets.AC_USERNAME }}
+          AC_PASSWORD: ${{ secrets.AC_PASSWORD }}
+        run: |
+          gon -log-level=debug -log-json ./scripts/build-scripts/gon.json
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: nebulabots
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          export_default_credentials: true
+      - name: Delete files from bucket(MacOS)
+        if: |
+         matrix.os == 'macos-latest' && steps.extract_branch.outputs.branch == 'main'
+        run: gsutil rm -f gs://${{ env.BUCKET_NAME }}/*.dmg
+      - name: Delete files from bucket(Windows)
+        if: |
+          matrix.os == 'windows-latest' && steps.extract_branch.outputs.branch == 'main'
+        run: |
+         gsutil rm -f gs://${{ env.BUCKET_NAME }}/*.exe
+         gsutil rm -f gs://${{ env.BUCKET_NAME }}/*.bak
+      - name: Upload Release
+        if: steps.extract_branch.outputs.branch == 'main'
+        uses: google-github-actions/upload-cloud-storage@main
+        with:
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
+          path: dist/
+          destination: ${{ env.BUCKET_NAME }}
+          parent: false
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-${{ matrix.os }}
+          path: dist/
+          retention-days: 1
